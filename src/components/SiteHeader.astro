@@ -1,4 +1,6 @@
 ---
+import { withBase } from "../lib/paths";
+
 const navItems = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
@@ -8,19 +10,18 @@ const navItems = [
 ];
 
 const base = import.meta.env.BASE_URL;
-const withBase = (href: string) => `${base}${href.replace(/^\//, "")}`;
 ---
 
 <header class="border-b border-zinc-900/90 bg-zinc-950/90">
   <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
-    <a href={withBase("/")} class="font-mono text-sm font-semibold tracking-wide text-zinc-100">
+    <a href={withBase(base, "/")} class="font-mono text-sm font-semibold tracking-wide text-zinc-100">
       Howard Sun
     </a>
 
     <div class="flex flex-wrap justify-end gap-x-5 gap-y-2 text-sm text-zinc-400">
       {
         navItems.map((item) => (
-          <a href={withBase(item.href)} class="transition hover:text-cyan-300">
+          <a href={withBase(base, item.href)} class="transition hover:text-cyan-300">
             {item.label}
           </a>
         ))

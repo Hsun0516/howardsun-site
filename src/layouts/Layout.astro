@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import SiteFooter from "../components/SiteFooter.astro";
 import SiteHeader from "../components/SiteHeader.astro";
+import { withBase } from "../lib/paths";
 
 interface Props {
   title?: string;
@@ -14,6 +15,7 @@ const {
 } = Astro.props;
 
 const pageTitle = title === "Howard Sun" ? title : `${title} | Howard Sun`;
+const base = import.meta.env.BASE_URL;
 ---
 
 <!doctype html>
@@ -23,8 +25,8 @@ const pageTitle = title === "Howard Sun" ? title : `${title} | Howard Sun`;
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
-    <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
-    <link rel="icon" href={`${import.meta.env.BASE_URL}favicon.ico`} />
+    <link rel="icon" type="image/svg+xml" href={withBase(base, "/favicon.svg")} />
+    <link rel="icon" href={withBase(base, "/favicon.ico")} />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
