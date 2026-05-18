@@ -22,5 +22,5 @@ export default defineConfig({
   },
 
   site: 'https://Hsun0516.github.io',
-  base: '/howard-site',
+  base: '/howardsun-site',
 });
