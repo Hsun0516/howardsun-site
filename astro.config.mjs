@@ -20,4 +20,7 @@ export default defineConfig({
     remarkPlugins: [remarkMath],
     rehypePlugins: [rehypeKatex],
   },
+
+  site: 'https://Hsun0516.github.io',
+  base: '/howard-site',
 });
