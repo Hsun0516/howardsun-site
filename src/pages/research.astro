@@ -1,0 +1,36 @@
+---
+import Layout from "../layouts/Layout.astro";
+import PostPreview from "../components/PostPreview.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+
+const notes = [
+  {
+    title: "Gradient Boosting as Function Approximation",
+    category: "Machine Learning",
+    description: "A planned note on boosting, residual fitting, and implementation tradeoffs.",
+  },
+  {
+    title: "RL Environments for Operational Decisions",
+    category: "Reinforcement Learning",
+    description: "A planned note on state, action, reward, simulation, and evaluation design.",
+  },
+  {
+    title: "Optimization Notes",
+    category: "Mathematics",
+    description: "A future collection of optimization and linear algebra explanations.",
+  },
+];
+---
+
+<Layout title="Research Notes">
+  <section class="mx-auto max-w-5xl px-6 py-20">
+    <SectionHeader
+      eyebrow="Research Notes"
+      title="Technical notes for math, ML, and reinforcement learning."
+      description="This section will hold concise MDX notes with equations, implementation details, and references."
+    />
+    <div class="mt-8">
+      {notes.map((note) => <PostPreview {...note} />)}
+    </div>
+  </section>
+</Layout>

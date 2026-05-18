@@ -1,0 +1,31 @@
+---
+import Layout from "../layouts/Layout.astro";
+import PostPreview from "../components/PostPreview.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+
+const posts = [
+  {
+    title: "Readable Game Architecture in Unity",
+    category: "Game Systems",
+    description: "Practical notes on modular gameplay code, card systems, and Unity learning.",
+  },
+  {
+    title: "Building Technical Projects That Explain Themselves",
+    category: "Engineering",
+    description: "Thoughts on project structure, documentation, and implementation clarity.",
+  },
+];
+---
+
+<Layout title="Blog">
+  <section class="mx-auto max-w-5xl px-6 py-20">
+    <SectionHeader
+      eyebrow="Blog"
+      title="Engineering notes and technical essays."
+      description="Longer-form writing on AI systems, machine learning, optimization, game architecture, and developer practice."
+    />
+    <div class="mt-8">
+      {posts.map((post) => <PostPreview {...post} />)}
+    </div>
+  </section>
+</Layout>

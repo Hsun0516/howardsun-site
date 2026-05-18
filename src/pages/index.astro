@@ -1,28 +1,216 @@
 ---
+import Layout from "../layouts/Layout.astro";
+import PostPreview from "../components/PostPreview.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+
+const base = import.meta.env.BASE_URL;
+const path = (href: string) => `${base}${href.replace(/^\//, "")}`;
+
+const focusAreas = [
+  "Machine Learning",
+  "Reinforcement Learning",
+  "Optimization",
+  "Python Systems",
+  "Unity / C#",
+  "Technical Writing",
+];
+
+const projects = [
+  {
+    title: "CatBoost from Scratch",
+    description:
+      "A from-scratch implementation of gradient boosting with attention to categorical feature handling and algorithmic clarity.",
+    tags: ["Python", "ML Algorithms", "Optimization"],
+    status: "ML",
+    href: path("/projects"),
+  },
+  {
+    title: "RL Shipping Optimization",
+    description:
+      "A reinforcement learning system for reasoning about shipping decisions, constraints, and long-horizon operational tradeoffs.",
+    tags: ["RL", "Simulation", "Decision Systems"],
+    status: "Research",
+    href: path("/projects"),
+  },
+  {
+    title: "Focus Idle",
+    description:
+      "A productivity game experiment that connects focus sessions with idle-game progression and systems design.",
+    tags: ["Game Systems", "Design", "Engineering"],
+    status: "Prototype",
+    href: path("/projects"),
+  },
+  {
+    title: "Unity Roguelike / Card Systems",
+    description:
+      "Unity and C# explorations around modular gameplay systems, card mechanics, and roguelike architecture.",
+    tags: ["Unity", "C#", "Game Architecture"],
+    status: "Learning",
+    href: path("/projects"),
+  },
+];
+
+const notes = [
+  {
+    title: "Gradient Boosting as Function Approximation",
+    category: "Machine Learning",
+    description:
+      "Notes on the mathematical view of boosting, residual fitting, and how implementation details shape model behavior.",
+    href: path("/research"),
+  },
+  {
+    title: "RL Environments for Operational Decisions",
+    category: "Reinforcement Learning",
+    description:
+      "Design notes for converting real-world constraints into state, action, reward, and evaluation loops.",
+    href: path("/research"),
+  },
+  {
+    title: "Readable Game Architecture in Unity",
+    category: "Game Systems",
+    description:
+      "Practical structure for keeping gameplay code modular while learning Unity and C#.",
+    href: path("/blog"),
+  },
+];
+
+const capabilities = [
+  {
+    label: "Mathematical ML",
+    items: ["gradient boosting", "linear algebra", "optimization", "model evaluation"],
+  },
+  {
+    label: "Engineering",
+    items: ["Python", "data pipelines", "simulation", "technical documentation"],
+  },
+  {
+    label: "Interactive Systems",
+    items: ["Unity", "C#", "game loops", "card and roguelike systems"],
+  },
+];
 ---
 
-<html>
-  <body class="bg-black text-white">
-    <main class="max-w-4xl mx-auto p-8">
-      <h1 class="text-5xl font-bold">
-        Howard Sun
-      </h1>
+<Layout>
+  <section class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+    <p class="font-mono text-xs uppercase tracking-[0.26em] text-cyan-300">
+      AI Research · Machine Learning · Systems
+    </p>
+    <h1 class="mt-6 max-w-4xl text-4xl font-semibold tracking-tight text-zinc-50 md:text-6xl">
+      Building machine learning systems with mathematical clarity.
+    </h1>
+    <p class="mt-6 max-w-2xl text-lg leading-8 text-zinc-400">
+      I am a mathematics student focused on AI engineering, reinforcement learning,
+      optimization, and technical systems. I care about clean implementations,
+      careful reasoning, and ideas that survive contact with code.
+    </p>
+    <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+      <a
+        href={path("/projects")}
+        class="inline-flex justify-center rounded-md bg-cyan-300 px-4 py-2.5 text-sm font-semibold text-zinc-950 transition hover:bg-cyan-200"
+      >
+        View Projects
+      </a>
+      <a
+        href={path("/research")}
+        class="inline-flex justify-center rounded-md border border-zinc-800 px-4 py-2.5 text-sm font-semibold text-zinc-200 transition hover:border-zinc-700 hover:text-cyan-300"
+      >
+        Read Research Notes
+      </a>
+    </div>
+    <div class="mt-8 flex flex-wrap gap-2">
+      {
+        focusAreas.map((area) => (
+          <span class="rounded-md border border-zinc-800 bg-zinc-900/40 px-3 py-1.5 font-mono text-xs text-zinc-300">
+            {area}
+          </span>
+        ))
+      }
+    </div>
+  </section>
 
-      <p class="mt-4 text-xl">
-        Mathematics Student • AI Researcher • Systems Builder
-      </p>
+  <section class="border-y border-zinc-900 bg-zinc-950 px-6 py-16">
+    <div class="mx-auto grid max-w-6xl gap-8 md:grid-cols-3">
+      <div>
+        <p class="font-mono text-xs uppercase tracking-[0.2em] text-zinc-500">Focus</p>
+        <p class="mt-3 leading-7 text-zinc-300">ML systems, optimization, and reinforcement learning.</p>
+      </div>
+      <div>
+        <p class="font-mono text-xs uppercase tracking-[0.2em] text-zinc-500">Method</p>
+        <p class="mt-3 leading-7 text-zinc-300">Mathematical reasoning paired with readable implementation.</p>
+      </div>
+      <div>
+        <p class="font-mono text-xs uppercase tracking-[0.2em] text-zinc-500">Exploration</p>
+        <p class="mt-3 leading-7 text-zinc-300">Unity, C#, game architecture, and interactive systems.</p>
+      </div>
+    </div>
+  </section>
 
-      <section class="mt-12">
-        <h2 class="text-3xl font-semibold">
-          Featured Projects
-        </h2>
+  <section class="mx-auto max-w-6xl px-6 py-20">
+    <SectionHeader
+      eyebrow="Technical Base"
+      title="Research interests backed by implementation."
+      description="The site is organized around projects and notes that connect math, machine learning, and systems engineering."
+    />
+    <div class="mt-8 grid gap-4 md:grid-cols-3">
+      {
+        capabilities.map((capability) => (
+          <section class="rounded-lg border border-zinc-800 bg-zinc-900/25 p-5">
+            <h3 class="font-mono text-sm font-semibold text-zinc-100">{capability.label}</h3>
+            <ul class="mt-4 space-y-2 text-sm text-zinc-400">
+              {capability.items.map((item) => <li>{item}</li>)}
+            </ul>
+          </section>
+        ))
+      }
+    </div>
+  </section>
 
-        <ul class="mt-4 space-y-4">
-          <li>CatBoost From Scratch</li>
-          <li>RL Shipping Optimization</li>
-          <li>Focus Idle</li>
-        </ul>
-      </section>
-    </main>
-  </body>
-</html>
+  <section class="border-y border-zinc-900 bg-zinc-950 px-6 py-20">
+    <div class="mx-auto max-w-6xl">
+    <SectionHeader
+      eyebrow="Selected Work"
+      title="Featured Projects"
+      description="Projects that show implementation depth, system design, and interest in AI-driven decision systems."
+    />
+    <div class="mt-8 grid gap-4 md:grid-cols-2">
+      {projects.map((project) => <ProjectCard {...project} />)}
+    </div>
+    </div>
+  </section>
+
+  <section class="mx-auto grid max-w-6xl gap-10 px-6 py-20 md:grid-cols-[0.85fr_1.15fr]">
+    <SectionHeader
+      eyebrow="Notebook"
+      title="Research Notes & Blog"
+      description="A growing space for machine learning, reinforcement learning, optimization, linear algebra, AI systems, and game architecture."
+    />
+    <div>
+      {notes.map((note) => <PostPreview {...note} />)}
+    </div>
+  </section>
+
+  <section class="border-t border-zinc-900 px-6 py-20">
+    <div class="mx-auto grid max-w-6xl gap-8 md:grid-cols-[1fr_1.4fr]">
+      <SectionHeader
+        eyebrow="Next"
+        title="Current direction"
+        description="I am building toward a portfolio that can hold rigorous project writeups, implementation notes, and mathematical explanations."
+      />
+      <div class="grid gap-4 sm:grid-cols-2">
+        <div class="rounded-lg border border-zinc-800 bg-zinc-900/25 p-5">
+          <p class="font-mono text-xs uppercase tracking-[0.2em] text-zinc-500">Writing queue</p>
+          <p class="mt-3 leading-7 text-zinc-300">
+            Machine learning algorithms, RL environment design, optimization notes, and linear algebra essays.
+          </p>
+        </div>
+        <div class="rounded-lg border border-zinc-800 bg-zinc-900/25 p-5">
+          <p class="font-mono text-xs uppercase tracking-[0.2em] text-zinc-500">Build queue</p>
+          <p class="mt-3 leading-7 text-zinc-300">
+            Project pages, MDX posts, math-heavy research notes, and deeper Unity systems documentation.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,45 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+
+const projects = [
+  {
+    title: "CatBoost from Scratch",
+    description: "A from-scratch implementation of gradient boosting and categorical feature handling.",
+    tags: ["Python", "ML Algorithms", "Optimization"],
+    status: "ML",
+  },
+  {
+    title: "RL Shipping Optimization",
+    description: "A reinforcement learning system for long-horizon shipping and operational decisions.",
+    tags: ["RL", "Simulation", "Decision Systems"],
+    status: "Research",
+  },
+  {
+    title: "Focus Idle",
+    description: "A productivity game experiment connecting focus sessions with idle-game systems.",
+    tags: ["Game Systems", "Design", "Engineering"],
+    status: "Prototype",
+  },
+  {
+    title: "Unity Roguelike / Card Systems",
+    description: "Unity and C# explorations around modular gameplay, cards, and roguelike structure.",
+    tags: ["Unity", "C#", "Architecture"],
+    status: "Learning",
+  },
+];
+---
+
+<Layout title="Projects">
+  <section class="mx-auto max-w-6xl px-6 py-20">
+    <SectionHeader
+      eyebrow="Projects"
+      title="Implementation-focused technical work."
+      description="A collection of AI, optimization, and game systems projects. Detailed writeups will be expanded over time."
+    />
+    <div class="mt-8 grid gap-4 md:grid-cols-2">
+      {projects.map((project) => <ProjectCard {...project} />)}
+    </div>
+  </section>
+</Layout>
